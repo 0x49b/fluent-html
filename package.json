@@ -1,0 +1,10 @@
+{
+  "name": "fluent-html",
+  "version": "0.0.1",
+  "description": "A JavaScript Library to write HTML Pages with a fluent API",
+  "main": "index.js",
+  "author": "Florian Thiévent",
+  "license": "MIT",
+  "private": false,
+  "repository": "https://github.com/lichtwellenreiter/fluent-html"
+}

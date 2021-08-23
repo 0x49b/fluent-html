@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <meta content="index,follow" name="robots">
+    <meta content="" name="description">
+    <link href="" rel="icon">
+    <title>Input - JS Testing some </title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" rel="stylesheet">
+</head>
+<body>
+
+
+<script type="module">
+
+
+    let Div = function () {
+        this.div = document.createElement("div")
+        return this
+    }
+
+    Div.prototype.html = function (html) {
+        this.div.innerHTML = html
+        return this
+    }
+
+    Div.prototype.text = function (txt) {
+        this.div.innerText = txt
+        return this
+    }
+
+    Div.prototype.class = function (classes) {
+        this.div.setAttribute('class', classes);
+        return this
+    }
+
+    Div.prototype.backgroundColor = function (bgColor) {
+        this.div.style.backgroundColor = bgColor;
+        return this
+    }
+
+    Div.prototype.height = function (h) {
+        this.div.style.height = h;
+        return this
+    }
+
+
+    Div.prototype.width = function (w) {
+        this.div.style.width = w;
+        return this
+    }
+
+
+    Div.prototype.minHeight = function (h) {
+        this.div.style.minHeight = h;
+        return this
+    }
+
+
+    Div.prototype.minWidth = function (w) {
+        this.div.style.minWidth = w;
+        return this
+    }
+
+    Div.prototype.button = function () {
+
+        let button = document.createElement("buttin")
+        button.innerHTML = "Hello, my Friend"
+        button.setAttribute("class", "btn btn-primary btn-small")
+        this.div.appendChild(button)
+        return this
+
+    }
+
+
+    Div.prototype.show = function () {
+        document.body.append(this.div)
+        return this
+    }
+
+    Div.prototype.hide = function () {
+        this.div.parentElement.removeChild(this.div)
+        return this
+    }
+
+    let Input = function () {
+        this.input = document.createElement("input")
+        return this
+    }
+
+    Input.prototype.type = function (type) {
+        this.input.setAttribute('type', type)
+        return this
+    }
+    Input.prototype.defaultValue = function (defaultValue) {
+        this.input.setAttribute("value", defaultValue)
+        return this
+    }
+
+    Input.prototype.class = function (classes) {
+        this.input.setAttribute('class', classes)
+        return this
+    }
+
+    Input.prototype.id = function (id) {
+        this.input.setAttribute("id", id)
+        return this
+    }
+
+    Input.prototype.placeholder = function (placeholder) {
+        this.input.placeholder = placeholder
+        return this
+    }
+
+    Input.prototype.show = function () {
+        document.body.append(this.input)
+        return this
+    }
+
+    Input.prototype.asHtml = function () {
+        return new XMLSerializer().serializeToString(this.input)
+    }
+
+
+    let username = new Input().type("text").placeholder("username").class("form-control")
+    let d = new Div().text("Blello").class("container").html(username.asHtml()).button().show();
+
+
+    let change = false
+
+    setInterval(function () {
+        if (change) {
+            d.backgroundColor("#ffdd06")
+        } else {
+            d.backgroundColor("#ff06dd")
+        }
+        change = !change
+    }, 1000);
+
+
+</script>
+
+</body>
+</html>
