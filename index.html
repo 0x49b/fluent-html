@@ -13,6 +13,10 @@
 </head>
 <body>
 
+<label for="disk_c">Disk usage C:</label>
+<meter id="disk_c" value="2" min="0" max="10">2 out of 10</meter>
+<br>
+
 
 <script type="module">
 
@@ -67,7 +71,7 @@
 
     Div.prototype.button = function () {
 
-        let button = document.createElement("buttin")
+        let button = document.createElement("button")
         button.innerHTML = "Hello, my Friend"
         button.setAttribute("class", "btn btn-primary btn-small")
         this.div.appendChild(button)
@@ -87,47 +91,162 @@
     }
 
     let Input = function () {
-        this.input = document.createElement("input")
-        return this
+        this.input = document.createElement("input");
+        return this;
     }
-
     Input.prototype.type = function (type) {
-        this.input.setAttribute('type', type)
-        return this
+        this.input.setAttribute('type', type);
+        return this;
     }
     Input.prototype.defaultValue = function (defaultValue) {
-        this.input.setAttribute("value", defaultValue)
-        return this
+        this.input.setAttribute("value", defaultValue);
+        return this;
     }
-
     Input.prototype.class = function (classes) {
-        this.input.setAttribute('class', classes)
-        return this
+        this.input.setAttribute('class', classes);
+        return this;
     }
-
     Input.prototype.id = function (id) {
-        this.input.setAttribute("id", id)
-        return this
+        this.input.setAttribute("id", id);
+        return this;
     }
-
     Input.prototype.placeholder = function (placeholder) {
-        this.input.placeholder = placeholder
-        return this
+        this.input.placeholder = placeholder;
+        return this;
     }
-
     Input.prototype.show = function () {
-        document.body.append(this.input)
-        return this
+        document.body.append(this.input);
+        return this;
     }
-
     Input.prototype.asHtml = function () {
-        return new XMLSerializer().serializeToString(this.input)
+        return new XMLSerializer().serializeToString(this.input);
     }
 
 
-    let username = new Input().type("text").placeholder("username").class("form-control")
-    let d = new Div().text("Blello").class("container").html(username.asHtml()).button().show();
+    /**
+     * Initializer
+     * @returns {*}
+     * @constructor
+     */
+    let Meter = function () {
+        this.input = document.createElement("meter");
+        return this;
+    }
 
+    /**
+     * Global Attributes
+     */
+    Meter.prototype.accesskey = (accesskey) => {
+        this.input.setAttribute('accesskey', accesskey);
+        return this;
+    }
+    Meter.prototype.class = (cssclass) => {
+        this.input.setAttribute('class', cssclass);
+        return this;
+    }
+    Meter.prototype.contenteditable = (contenteditable) => {
+        this.input.setAttribute('contenteditable', contenteditable);
+        return this;
+    }
+    Meter.prototype.dataAttr = (key, value) => {
+        let dataKey = "data-" + key
+        this.input.setAttribute(dataKey, value);
+        return this;
+    }
+    Meter.prototype.dir = (dir) => {
+        this.input.setAttribute('dir', dir);
+        return this;
+    }
+    Meter.prototype.draggable = (draggable) => {
+        this.input.setAttribute('draggable', draggable);
+        return this;
+    }
+    Meter.prototype.hidden = (hidden) => {
+        this.input.setAttribute('hidden', hidden);
+        return this;
+    }
+    Meter.prototype.elementId = (elementID) => {
+        this.input.id = elementID
+        return this;
+    }
+    Meter.prototype.lang = (lang) => {
+        this.input.setAttribute('lang', lang);
+        return this;
+    }
+    Meter.prototype.spellcheck = (spellcheck) => {
+        this.input.setAttribute('spellcheck', spellcheck);
+        return this;
+    }
+    Meter.prototype.style = (style) => {
+        this.input.setAttribute('style', style);
+        return this;
+    }
+    Meter.prototype.tabindex = (tabindex) => {
+        this.input.setAttribute('tabindex', tabindex);
+        return this;
+    }
+    Meter.prototype.title = (title) => {
+        this.input.setAttribute('title', title);
+        return this;
+    }
+    Meter.prototype.translate = (translate) => {
+        this.input.setAttribute('translate', translate);
+        return this;
+    }
+
+    /**
+     * Element Specific attributes
+     */
+    Meter.prototype.form = function (form) {
+        this.input.setAttribute('form', form);
+        return this;
+    }
+    Meter.prototype.high = function (high) {
+        this.input.setAttribute('high', high);
+        return this;
+    }
+    Meter.prototype.low = function (low) {
+        this.input.setAttribute('low', low);
+        return this;
+    }
+    Meter.prototype.min = function (min) {
+        this.input.setAttribute('min', min);
+        return this;
+    }
+    Meter.prototype.max = function (max) {
+        this.input.setAttribute('max', max);
+        return this;
+    }
+    Meter.prototype.optimum = function (optimum) {
+        this.input.setAttribute('optimum', optimum);
+        return this;
+    }
+    Meter.prototype.value = function (value) {
+        this.input.setAttribute('value', value);
+        return this;
+    }
+
+
+    Meter.prototype.asHtml = function () {
+        return new XMLSerializer().serializeToString(this.input);
+    }
+    Meter.prototype.remove = function (attr) {
+        this.input.removeAttribute(attr);
+        return this;
+    }
+    Meter.prototype.hide = function () {
+        this.input.parentElement.removeChild(this.input);
+        return this;
+    }
+    Meter.prototype.show = function () {
+        document.body.append(this.input);
+        return this;
+    }
+
+
+    let m = new Meter().min(0).max(100).value(76).high(75).show();
+    let username = new Input().type("text").id("Hello-username").placeholder("username").class("form-control");
+    let d = new Div().text("Blello").class("container").html(username.asHtml()).button().show();
 
     let change = false
 
@@ -135,7 +254,7 @@
         if (change) {
             d.backgroundColor("#ffdd06")
         } else {
-            d.backgroundColor("#ff06dd")
+            d.backgroundColor("#ff7c00")
         }
         change = !change
     }, 1000);
