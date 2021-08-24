@@ -10,59 +10,113 @@
     <title>Input - JS Testing some </title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
           integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #ff0000;
+            --orange: #F47E02;
+            --yellow: #F9FA01;
+            --green: #00BA42;
+            --blue: #0067FC;
+            --purple: #7205E5;
+            --pink: #D200C5;
+        }
+
+        .red {
+            background-color: var(--red);
+        }
+
+        .orange {
+            background-color: var(--orange);
+        }
+
+        .yellow {
+            background-color: var(--yellow);
+        }
+
+        .green {
+            background-color: var(--green);
+        }
+
+        .blue {
+            background-color: var(--blue);
+        }
+
+        .purple {
+            background-color: var(--purple);
+        }
+
+        .pink {
+            background-color: var(--pink);
+        }
+
+        .rainbow {
+            width: 300px;
+            height: 50px;
+        }
+
+        .rainbow-container {
+            width: 300px;
+            height: 350px;
+            margin-bottom: 2rem;
+        }
+
+
+    </style>
 </head>
 <body>
 
-
 <script type="module">
 
+
     import {Div} from "./selem/div.js"
+    import {A, TARGET} from "./selem/a.js"
+    import {P} from "./selem/p.js"
+    import {H5} from "./selem/h5.js";
+    import {Img} from "./selem/img.js";
+    import {Button} from "./selem/button.js";
 
 
     let red = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#ff0000")
-        .asDOMObject();
+        .cssClass("rainbow red")
+        .create();
     let orange = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#F47E02")
-        .asDOMObject();
+        .cssClass("rainbow orange")
+        .create();
     let yellow = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#F9FA01")
-        .asDOMObject();
+        .cssClass("rainbow yellow")
+        .create();
     let green = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#00BA42")
-        .asDOMObject();
+        .cssClass("rainbow green")
+        .create();
     let blue = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#0067FC")
-        .asDOMObject();
+        .cssClass("rainbow blue")
+        .create();
     let purple = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#7205E5")
-        .asDOMObject();
+        .cssClass("rainbow purple")
+        .create();
     let pink = new Div()
-        .width("300px")
-        .height("50px")
-        .bgColor("#D200C5")
-        .asDOMObject();
+        .cssClass("rainbow pink")
+        .create();
 
     const rainbowColors = [red, orange, yellow, green, blue, purple, pink];
 
     let parentDiv = new Div()
-        .width("300px")
-        .height("350px")
-        .addChildrens(rainbowColors)
-        .show();
+        .cssClass("rainbow-container")
+        .addChildrens(rainbowColors);
 
+    let img = new Img().src("https://via.placeholder.com/300x150").cssClass("card-img-top").alt("...").create();
+    let h5 = new H5().cssClass("card-title").innerText("Card title").create();
+    let a = new A().href("https://google.com").target(TARGET.BLANK).cssClass("btn btn-primary").innerText("Go somwhere").create();
+    let p = new P().cssClass("card-text").innerText("Some quick example text to build on the card title and make up the bulk of the card's content.").create();
+    let cardBody = new Div().cssClass("card-body").addChildrens([h5, p, a]).create();
+    let card = new Div().cssClass("card").width("18rem").addChildrens([img, cardBody]).create();
+
+
+    let button = new Button().cssClass("btn-close").ariaLabel("Close").type("button").create();
+    let alert = new Div().cssClass("alert alert-primary").role("alert").innerText("A simple primary alert-check it out!").create();
+
+    let container = new Div().cssClass("container").addChildrens([card, button, alert]).show();
 
 </script>
 </body>
