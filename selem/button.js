@@ -27,4 +27,9 @@ class Button extends FluentElement {
         return this;
     }
 
+    onclick(callback) {
+        this.element.addEventListener('click', e => callback(e));
+        return this;
+    }
+
 }

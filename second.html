@@ -68,7 +68,6 @@
 
 <script type="module">
 
-
     import {Div} from "./selem/div.js"
     import {A, TARGET} from "./selem/a.js"
     import {P} from "./selem/p.js"
@@ -105,6 +104,20 @@
         .cssClass("rainbow-container")
         .addChildrens(rainbowColors);
 
+
+    const btnClick = e => {
+
+        console.log(e)
+
+        if (e.type === "click" && e.ctrlKey) {
+            console.info("This was a ctrl click");
+        } else if (e.type === "click" && e.altKey) {
+            console.info("this was a alt click");
+        } else {
+            console.info("this was a a normal click");
+        }
+    };
+
     let img = new Img().src("https://via.placeholder.com/300x150").cssClass("card-img-top").alt("...").create();
     let h5 = new H5().cssClass("card-title").innerText("Card title").create();
     let a = new A().href("https://google.com").target(TARGET.BLANK).cssClass("btn btn-primary").innerText("Go somwhere").create();
@@ -112,11 +125,12 @@
     let cardBody = new Div().cssClass("card-body").addChildrens([h5, p, a]).create();
     let card = new Div().cssClass("card").width("18rem").addChildrens([img, cardBody]).create();
 
+    let button = new Button().cssClass("btn-close").ariaLabel("Close").type("button").onclick(btnClick).create();
 
-    let button = new Button().cssClass("btn-close").ariaLabel("Close").type("button").create();
-    let alert = new Div().cssClass("alert alert-primary").role("alert").innerText("A simple primary alert-check it out!").create();
 
-    let container = new Div().cssClass("container").addChildrens([card, button, alert]).show();
+    let bsalert = new Div().cssClass("alert alert-primary").role("alert").innerText("A simple primary alert-check it out!").create();
+    let container = new Div().cssClass("container").addChildrens([card, button, bsalert]).show();
+
 
 </script>
 </body>
